@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aadhaar Card — New Enrolment / Correction — Sarthi - X</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .breadcrumb{ padding:18px 0 0; font-size:13px; color:var(--ink-soft); }
+  .breadcrumb a:hover{ color:var(--blue); }
+  .doc-hero{ padding:16px 0 30px; display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; }
+  .doc-hero .icon-badge{ width:64px; height:64px; font-size:30px; }
+  .doc-hero h1{ font-size:27px; }
+  .doc-hero p.desc{ color:var(--ink-soft); font-size:14.5px; margin-top:6px; max-width:60ch; }
+  .kpi-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:16px; }
+  .kpi{ padding:12px 16px; display:flex; align-items:center; gap:10px; min-width:150px; }
+  .kpi .n{ font-family:'Poppins'; font-weight:700; font-size:15px; }
+  .kpi .l{ font-size:11.5px; color:var(--ink-soft); }
+
+  .layout{ display:grid; grid-template-columns:2.1fr 1fr; gap:28px; padding-bottom:60px; }
+
+  .steps-title{ font-size:19px; margin-bottom:18px; }
+  .step{ display:flex; gap:16px; margin-bottom:6px; }
+  .step .rail{ display:flex; flex-direction:column; align-items:center; }
+  .step .num{ width:34px; height:34px; border-radius:50%; background:var(--blue); color:#fff; font-family:'Poppins'; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step .connector{ width:2px; flex:1; background:var(--line); margin:4px 0; }
+  .step:last-child .connector{ display:none; }
+  .step-card{ padding:18px 20px; margin-bottom:20px; flex:1; }
+  .step-card h3{ font-size:16px; margin-bottom:8px; }
+  .step-card p{ font-size:13.5px; color:var(--ink-soft); margin:0 0 12px; }
+  .step-detail-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .step-detail{ background:var(--bg); border-radius:10px; padding:10px 12px; font-size:12.5px; }
+  .step-detail .k{ color:var(--ink-soft); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.03em; margin-bottom:3px; }
+  .step-detail .v{ color:var(--navy); font-weight:600; }
+
+  .side-card{ padding:22px; margin-bottom:20px; }
+  .side-card h4{ font-size:15px; margin-bottom:12px; }
+  .checklist{ list-style:none; margin:0; padding:0; }
+  .checklist li{ display:flex; align-items:flex-start; gap:9px; font-size:13.5px; padding:7px 0; border-bottom:1px solid var(--line); }
+  .checklist li:last-child{ border-bottom:none; }
+  .checklist li .tick{ color:var(--green); font-weight:700; }
+  .form-item{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px; }
+  .form-item:last-child{ border-bottom:none; }
+  .related-row{ display:flex; flex-direction:column; gap:8px; }
+  .related-row a{ font-size:13.5px; font-weight:600; padding:9px 12px; border-radius:9px; background:var(--bg); }
+  .related-row a:hover{ color:var(--blue); }
+
+  @media(max-width:880px){ .layout{ grid-template-columns:1fr; } .step-detail-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <div class="logo">
+      <div class="mark">📄</div>
+      <div><div class="word">Sarthi <span>- X</span></div><div class="tag">Your Document Friend in the Government Maze</div></div>
+    </div>
+    <nav class="main">
+      <a href="index.html">🏠 Home</a>
+      <a href="dashboard.html" class="active">⚡ Quick Access</a>
+      <a href="updates.html">🔔 Live Updates</a>
+      <a href="dashboard.html">📄 Popular Documents</a>
+      <a href="about.html">ℹ️ About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang">🌐 English ⌄</div>
+      <a href="#" class="btn-login">👤 Login</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap breadcrumb"><a href="index.html">Home</a> / <a href="dashboard.html">Documents</a> / Aadhaar Card — New Enrolment / Correction</div>
+
+<div class="wrap doc-hero">
+  <div class="icon-badge ib-blue">🪪</div>
+  <div style="flex:1; min-width:260px;">
+    <h1>Aadhaar Card — New Enrolment / Correction</h1>
+    <p class="desc">Enrol for a new Aadhaar Card or correct your name, address, or date of birth through the UIDAI centre in Amravati.</p>
+    <div class="kpi-row">
+      <div class="card kpi"><div class="icon-badge ib-green" style="width:34px;height:34px;font-size:15px;">⏱️</div><div><div class="n">7–10 days</div><div class="l">Processing time</div></div></div>
+      <div class="card kpi"><div class="icon-badge ib-amber" style="width:34px;height:34px;font-size:15px;">💵</div><div><div class="n">₹50 (correction)</div><div class="l">Govt. fee</div></div></div>
+      <div class="card kpi"><div class="icon-badge ib-purple" style="width:34px;height:34px;font-size:15px;">🏢</div><div><div class="n">1 visit</div><div class="l">Office visits</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap layout">
+  <div>
+    <h2 class="steps-title">Step-by-step guide (Amravati)</h2>
+    
+    <div class="step">
+      <div class="rail"><div class="num">1</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Book your Aadhaar appointment online</h3>
+        <p>Use the UIDAI appointment portal to book a slot for Amravati Seva Kendra to avoid long queues.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">Online (UIDAI Portal)</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">—</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">—</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">Same day</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="rail"><div class="num">2</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Visit the Aadhaar Seva Kendra</h3>
+        <p>Reach the centre 15 minutes before your slot with all original documents and photocopies.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">UIDAI Seva Kendra, Camp Road, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Aadhaar Enrolment Operator</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">Annexure-A (Correction Form)</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">30–45 min</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="rail"><div class="num">3</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Biometric verification</h3>
+        <p>Fingerprint, iris scan, and photo capture done at the counter by the operator.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">UIDAI Seva Kendra, Camp Road, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Aadhaar Enrolment Operator</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">—</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">10 min</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="rail"><div class="num">4</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Collect acknowledgment slip</h3>
+        <p>Keep the Enrolment/Update Request Number (EID) slip safely — used to track and download the updated Aadhaar.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">UIDAI Seva Kendra, Camp Road, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Aadhaar Enrolment Operator</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">—</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">5 min</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card side-card">
+      <h4>📋 Documents to carry</h4>
+      <ul class="checklist"><li><span class="tick">✓</span>Proof of Identity (PAN / Voter ID / Passport)</li><li><span class="tick">✓</span>Proof of Address (bank passbook / rent agreement)</li><li><span class="tick">✓</span>Proof of Date of Birth (birth certificate)</li><li><span class="tick">✓</span>1 recent passport-size photo</li></ul>
+    </div>
+    <div class="card side-card">
+      <h4>📝 Forms to download</h4>
+      <div class="form-item"><span>📄 Aadhaar Enrolment/Correction Form (Annexure-A)</span><a href="#" class="chip chip-outline">Download</a></div>
+    </div>
+    <div class="card side-card">
+      <h4>🔗 Related documents</h4>
+      <div class="related-row"><a href="doc-domicile-certificate.html">Domicile Certificate →</a><a href="doc-income-certificate.html">Income Certificate →</a></div>
+    </div>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div><div class="brand">Sarthi - X</div><small>Your Document Friend in the Government Maze — Amravati Pilot</small></div>
+  </div>
+</footer>
+
+<script type="module" src="/src/docpage.js"></script>
+</body>
+</html>

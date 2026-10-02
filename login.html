@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login or Sign Up — Sarthi - X</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body{ background:linear-gradient(180deg,#F3F8FF,#fff); min-height:100vh; }
+  .shell{ max-width:1100px; margin:0 auto; min-height:100vh; display:grid; grid-template-columns:1fr 440px; gap:48px; align-items:center; padding:32px; }
+  .brand{ display:flex; align-items:center; gap:10px; margin-bottom:28px; }
+  .brand .mark{ width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#1652F0,#4C7CFF); display:flex; align-items:center; justify-content:center; }
+  .brand .word{ font-family:'Poppins'; font-weight:800; font-size:24px; color:var(--navy); }
+  .brand .word span{ color:var(--blue); }
+  .pitch h1{ font-family:'Poppins'; font-size:40px; line-height:1.15; color:var(--navy); margin:0 0 14px; }
+  .pitch h1 span{ color:var(--blue); }
+  .pitch p{ color:var(--ink-soft); font-size:16px; line-height:1.6; max-width:480px; margin:0 0 24px; }
+  .pts{ list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+  .pts li{ display:flex; gap:12px; align-items:center; font-size:14.5px; color:#3C4459; font-weight:500; }
+  .pts i{ width:30px; height:30px; border-radius:50%; background:var(--green-bg); color:var(--green); display:flex; align-items:center; justify-content:center; font-style:normal; font-weight:700; flex:none; }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow-lg); padding:28px; }
+  .tabs{ display:grid; grid-template-columns:1fr 1fr; background:#F1F4FA; border-radius:14px; padding:4px; margin-bottom:22px; }
+  .tabs button{ border:0; background:none; padding:11px; border-radius:11px; font-weight:700; font-size:14px; color:var(--ink-soft); cursor:pointer; }
+  .tabs button.on{ background:#fff; color:var(--blue); box-shadow:var(--shadow-sm); }
+  .card h2{ font-family:'Poppins'; font-size:22px; color:var(--navy); margin:0 0 4px; }
+  .card .sub{ color:var(--ink-soft); font-size:13.5px; margin:0 0 18px; }
+  .sbtn{ width:100%; display:flex; align-items:center; justify-content:center; gap:10px; padding:12px; border:1px solid var(--line); background:#fff; border-radius:12px; font-weight:600; font-size:14px; color:var(--navy); cursor:pointer; margin-bottom:10px; }
+  .sbtn:hover{ background:#F7F9FC; border-color:#CBD5E8; }
+  .sbtn svg{ width:20px; height:20px; }
+  .forgot{ text-align:right; margin:-6px 0 14px; font-size:12.5px; }
+  .forgot a{ color:var(--blue); font-weight:600; cursor:pointer; }
+  .linkbtn{ border:0; background:none; color:var(--blue); font-weight:600; font-size:13px; cursor:pointer; padding:6px 0; }
+  .cfg{ background:var(--amber-bg); color:#92400E; border-radius:10px; padding:12px; font-size:12.5px; line-height:1.5; margin-bottom:16px; display:none; }
+  .or{ display:flex; align-items:center; gap:12px; color:var(--muted); font-size:12px; margin:16px 0; }
+  .or::before,.or::after{ content:""; flex:1; height:1px; background:var(--line); }
+  label.f{ display:block; font-size:12.5px; font-weight:600; color:#3C4459; margin:0 0 6px; }
+  .in{ width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:11px; font:inherit; font-size:14px; margin-bottom:14px; background:#fff; }
+  .in:focus{ outline:none; border-color:var(--blue); box-shadow:0 0 0 3px var(--blue-light); }
+  .pw{ position:relative; }
+  .pw button{ position:absolute; right:10px; top:9px; border:0; background:none; color:var(--blue); font-size:12px; font-weight:700; cursor:pointer; }
+  .go{ width:100%; padding:13px; border:0; border-radius:12px; background:var(--blue); color:#fff; font-weight:700; font-size:14.5px; cursor:pointer; box-shadow:0 6px 16px rgba(22,82,240,.2); }
+  .go:hover{ background:var(--blue-dark); }
+  .go:disabled{ opacity:.6; cursor:wait; }
+  .err{ background:var(--red-bg); color:#B42318; border-radius:10px; padding:10px 12px; font-size:13px; margin-bottom:14px; display:none; }
+  .ok{ background:var(--green-bg); color:#166534; border-radius:10px; padding:10px 12px; font-size:13px; margin-bottom:14px; display:none; }
+  .alt{ text-align:center; font-size:13px; color:var(--ink-soft); margin-top:16px; }
+  .alt a{ color:var(--blue); font-weight:700; cursor:pointer; }
+  .fine{ text-align:center; font-size:11.5px; color:var(--muted); margin-top:14px; }
+  .hide{ display:none !important; }
+  .modal{ position:fixed; inset:0; background:rgba(15,27,61,.45); display:none; align-items:center; justify-content:center; padding:20px; z-index:999; }
+  .modal.open{ display:flex; }
+  .modal .box{ background:#fff; border-radius:18px; padding:24px; width:100%; max-width:380px; }
+  .modal .demo{ font-size:12px; color:#92400E; background:var(--amber-bg); border-radius:8px; padding:8px 10px; margin-bottom:14px; }
+  .cancel{ width:100%; margin-top:8px; border:0; background:none; color:var(--ink-soft); cursor:pointer; font-size:13px; padding:8px; }
+  @media(max-width:900px){ .shell{ grid-template-columns:1fr; gap:24px; padding:20px; } .pitch h1{ font-size:30px; } .pts{ display:none; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="pitch">
+    <div class="brand">
+      <div class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+      <div class="word">Sarthi <span>- X</span></div>
+    </div>
+    <h1>Your Document Friend<br>in the <span>Government Maze</span></h1>
+    <p>Log in or create a free account to get your exact Amravati roadmap — office, officer and form — in just 2 minutes.</p>
+    <ul class="pts">
+      <li><i>✓</i>Official sources verified</li>
+      <li><i>✓</i>Personalised document checklist</li>
+      <li><i>✓</i>Your data stays private and secure</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <div class="tabs">
+      <button type="button" id="tabLogin" class="on">Log In</button>
+      <button type="button" id="tabSignup">Sign Up</button>
+    </div>
+    <div class="cfg" id="cfg"></div>
+    <h2 id="title">Welcome back</h2>
+    <p class="sub" id="sub">Log in to continue to Sarthi - X.</p>
+
+    <button type="button" class="sbtn" id="gBtn">
+      <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+      Continue with Google
+    </button>
+        <button type="button" class="sbtn" id="pBtn">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2.500" stroke="#16A34A" stroke-width="2"/><path d="M11 18h2" stroke="#16A34A" stroke-width="2" stroke-linecap="round"/></svg>
+      Continue with Mobile Number
+    </button>
+
+    <div class="or">or use email</div>
+    <div class="err" id="err"></div>
+    <div class="ok" id="ok"></div>
+
+    <form id="form" novalidate>
+      <div id="nameRow" class="hide"><label class="f" for="name">Full name</label><input class="in" id="name" autocomplete="name" placeholder="e.g. Atharv Patil"></div>
+      <label class="f" for="email">Email</label>
+      <input class="in" id="email" type="email" autocomplete="email" placeholder="you@example.com">
+      <label class="f" for="pass">Password</label>
+      <div class="pw"><input class="in" id="pass" type="password" autocomplete="current-password" placeholder="At least 6 characters"><button type="button" id="show">Show</button></div>
+      <div class="forgot" id="forgotRow"><a id="forgot">Forgot password?</a></div>
+      <button class="go" id="go" type="submit">Log In</button>
+    </form>
+    <div class="alt" id="alt">New to Sarthi - X? <a id="swap">Create an account</a></div>
+    <div class="fine">By continuing you agree to our Terms &amp; Privacy Policy.</div>
+  </section>
+</div>
+
+<!-- Mobile OTP modal -->
+<div class="modal" id="pModal"><div class="box">
+  <h2 style="font-family:Poppins;font-size:18px;margin:0 0 10px">Continue with mobile</h2>
+  <div class="err" id="pErr"></div>
+  <div id="pStep1">
+    <label class="f" for="phone">Mobile number</label>
+    <input class="in" id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number">
+    <button class="go" id="sendOtp" type="button">Send OTP</button>
+  </div>
+  <div id="pStep2" class="hide">
+    <p class="sub" id="otpHint" style="margin-bottom:12px"></p>
+    <label class="f" for="otp">Enter 6-digit OTP</label>
+    <input class="in" id="otp" inputmode="numeric" maxlength="6" placeholder="------">
+    <button class="go" id="verifyOtp" type="button">Verify &amp; Continue</button>
+    <div style="display:flex;justify-content:space-between"><button class="linkbtn" id="resendOtp" type="button">Resend OTP</button><button class="linkbtn" id="changeNum" type="button">Change number</button></div>
+  </div>
+  <div id="recaptcha-container"></div>
+  <button class="cancel" type="button" data-close="pModal">Cancel</button>
+</div></div>
+
+<script type="module" src="/src/login.js"></script>
+</body>
+</html>

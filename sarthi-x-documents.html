@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents — Sarthi - X</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#F1EAD4;
+    --paper-dark:#E4D9B8;
+    --ink:#242119;
+    --ink-soft:#5B5546;
+    --indigo:#2B3A67;
+    --indigo-deep:#1D2848;
+    --seal:#A63A32;
+    --sage:#5D7A5A;
+    --gold:#C79A45;
+    --line: rgba(36,33,25,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif; line-height:1.5;
+  }
+  h1,h2,h3{ font-family:'Spectral', serif; margin:0; color:var(--indigo-deep); }
+  a{color:inherit;}
+
+  header{ position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:2px solid var(--ink); }
+  .nav-wrap{ max-width:1200px; margin:0 auto; display:flex; align-items:flex-end; padding:18px 32px 0; gap:6px; flex-wrap:wrap; }
+  .brand{ font-family:'Spectral', serif; font-weight:700; font-size:22px; color:var(--indigo-deep); margin-right:auto; padding-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .brand .dot{ width:10px;height:10px;border-radius:50%; background:var(--seal); display:inline-block; }
+  nav.tabs{display:flex; gap:4px;}
+  nav.tabs a{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:var(--ink-soft); background:var(--paper-dark); border:1.5px solid var(--ink); border-bottom:none; padding:10px 16px 12px; border-radius:8px 8px 0 0; transform:translateY(2px); }
+  nav.tabs a.active{ background:var(--paper); color:var(--indigo-deep); transform:translateY(0); font-weight:600; }
+
+  .page-head{ max-width:1200px; margin:0 auto; padding:56px 32px 24px; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--seal); font-weight:500; display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--seal);display:inline-block;}
+  .page-head h1{ font-size:clamp(30px,4.5vw,46px); font-weight:600; }
+  .page-head p{ color:var(--ink-soft); max-width:60ch; margin-top:14px; font-size:16px;}
+
+  .scope-note{
+    max-width:1200px; margin:0 auto 12px; padding:0 32px;
+  }
+  .scope-note .box{
+    background:#fff; border:1.5px solid var(--ink); border-radius:8px;
+    padding:16px 20px; font-size:13.5px; color:var(--ink-soft);
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .scope-note .box strong{ color:var(--ink); }
+
+  .toc{
+    max-width:1200px; margin:32px auto 0; padding:0 32px;
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .toc a{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase;
+    text-decoration:none; color:var(--indigo-deep); background:var(--paper-dark);
+    border:1.5px solid var(--ink); border-radius:20px; padding:8px 14px;
+  }
+  .toc a:hover{ background:#fff; }
+
+  main{ max-width:1200px; margin:0 auto; padding:40px 32px 80px; }
+
+  details.cat{
+    background:#fff; border:1.5px solid var(--ink); border-radius:8px;
+    margin-bottom:16px; overflow:hidden; position:relative;
+  }
+  details.cat::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--indigo);
+  }
+  details.cat[data-accent="seal"]::before{ background:var(--seal); }
+  details.cat[data-accent="sage"]::before{ background:var(--sage); }
+  details.cat[data-accent="gold"]::before{ background:var(--gold); }
+
+  details.cat summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 24px 20px 30px;
+  }
+  details.cat summary::-webkit-details-marker{ display:none; }
+  details.cat summary h2{ font-size:19px; }
+  .cat-meta{ display:flex; align-items:center; gap:14px; }
+  .count-pill{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft);
+    background:var(--paper-dark); border:1px solid var(--line); border-radius:20px; padding:4px 12px;
+  }
+  .chevron{ font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); transition:transform .15s ease; }
+  details[open] .chevron{ transform:rotate(45deg); }
+
+  .doc-list{ padding:0 24px 24px 30px; border-top:1px dashed var(--line); }
+  .doc-list ul{ list-style:none; margin:16px 0 0; padding:0; column-width:260px; column-gap:28px; }
+  .doc-list li{
+    font-size:14px; padding:7px 0; break-inside:avoid;
+    border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:8px;
+  }
+  .doc-list li::before{ content:"·"; color:var(--seal); font-weight:700; }
+
+  .core-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; text-transform:uppercase;
+    background:var(--sage); color:#fff; padding:2px 7px; border-radius:4px; margin-left:auto;
+  }
+
+  footer{ background:var(--indigo-deep); color:var(--paper); padding:32px; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11.5px; }
+
+  @media (max-width:640px){
+    .doc-list ul{ column-width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand"><span class="dot"></span>Sarthi - X</div>
+    <nav class="tabs">
+      <a href="index.html">Home</a>
+      <a href="#" class="active">Documents</a>
+      <a href="#">How it works</a>
+      <a href="#">Use Cases</a>
+      <a href="#">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="eyebrow">Document master list</div>
+  <h1>Find your document, by category</h1>
+  <p>Every document a student may need, sorted by where it comes from and what it's for. Sections marked <span class="core-tag" style="margin-left:0;">Core</span> are covered in full guides today — the rest are listed for reference.</p>
+</div>
+
+<div class="scope-note">
+  <div class="box">
+    📌 <div><strong>Scope note:</strong> this list runs to 160 documents across identity, academic, financial, and specialised departments. V1 of Sarthi - X focuses on the categories students hit most often for admissions, scholarships, and loans — Core below. Everything else stays visible for reference and gets its own guide as we expand.</div>
+  </div>
+</div>
+
+<div class="toc">
+  <a href="#identity">Identity &amp; Personal</a>
+  <a href="#address">Address Proof</a>
+  <a href="#academic">Academic</a>
+  <a href="#category">Category &amp; Status</a>
+  <a href="#affidavits">Affidavits &amp; Legal</a>
+  <a href="#financial">Financial &amp; Scholarship</a>
+  <a href="#international">International Student</a>
+  <a href="#admin">Administrative</a>
+  <a href="#dept">By Department</a>
+</div>
+
+<main>
+
+  <details class="cat" data-accent="indigo" open id="identity">
+    <summary>
+      <h2>Core Identity &amp; Personal Documents</h2>
+      <div class="cat-meta"><span class="count-pill">22 documents</span><span class="core-tag">Core</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Aadhaar Card</li><li>PAN Card</li><li>Passport</li><li>Voter ID (EPIC)</li>
+      <li>Driving Licence</li><li>Birth Certificate</li><li>Ration Card (with address)</li>
+      <li>Pensioner's Card with address</li><li>Character Certificate</li>
+      <li>Valid Government Photo ID (General category)</li><li>Nationality Certificate</li>
+      <li>Domicile Certificate</li><li>Nativity Certificate</li>
+      <li>Certificate of Identity (Gazetted Officer/Tehsildar)</li>
+      <li>Certificate of Address (Gazetted Officer/Tehsildar)</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="seal" id="address">
+    <summary>
+      <h2>Address Proof Documents</h2>
+      <div class="cat-meta"><span class="count-pill">19 documents</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Bank Passbook (with address)</li><li>Bank Statement (6–12 months)</li>
+      <li>Rent Agreement (Registered/Unregistered)</li><li>Property Ownership Documents</li>
+      <li>Vehicle Registration Certificate</li><li>Insurance Policy (valid 1+ year)</li>
+      <li>MGNREGA Job Card</li><li>Government Allotment Letter</li>
+      <li>Registered Sale / Lease Deed</li><li>Caste Certificate with address and photo</li>
+      <li>Domicile Certificate with address and photo</li>
+      <li>Certificate of Address with photo (Govt. recognized institution)</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="sage" open id="academic">
+    <summary>
+      <h2>Academic &amp; Educational Documents</h2>
+      <div class="cat-meta"><span class="count-pill">28 documents</span><span class="core-tag">Core</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Character Certificate</li><li>Gap Certificate (if study gap)</li>
+      <li>10th Marksheet &amp; Certificate</li><li>12th Marksheet &amp; Certificate</li>
+      <li>Leaving / Transfer Certificate</li><li>Migration Certificate</li>
+      <li>Bonafide Certificate</li><li>Degree / Diploma Certificates</li>
+      <li>Semester-wise Marksheets</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="gold" id="category">
+    <summary>
+      <h2>Category &amp; Special Status Documents</h2>
+      <div class="cat-meta"><span class="count-pill">20 documents</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>SC Certificate</li><li>ST Certificate</li><li>OBC-NCL Certificate</li>
+      <li>EWS Certificate (central Govt. format)</li><li>Caste Validity Certificate (Maharashtra)</li>
+      <li>PwD / UDID Certificate</li><li>Income Certificate (Tehsildar/SDM/BDO)</li>
+      <li>Domicile Certificate (state quota)</li><li>Nativity Certificate (J&amp;K/Ladakh/NE)</li>
+      <li>Kashmiri Migrant Certificate</li><li>Single Girl Child Certificate</li>
+      <li>Orphan Certificate</li><li>Ward Quota Certificate</li>
+      <li>Sports / ECA Certificates</li><li>Ex-Servicemen Certificate</li>
+      <li>CW Children/Widows of Armed Forces Concession Certificate</li>
+      <li>Minority Quota Certificate (Sikh/Christian/Jain)</li>
+      <li>Jain Minority Certificate</li><li>Jain Membership Certificate</li>
+      <li>U.P. Domicile Certificate</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="indigo" id="affidavits">
+    <summary>
+      <h2>Affidavits, Undertakings &amp; Legal Documents</h2>
+      <div class="cat-meta"><span class="count-pill">15 documents</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Anti-Ragging Affidavit (Student)</li><li>Anti-Ragging Affidavit (Parent)</li>
+      <li>Admission Affidavit (Student)</li><li>Admission Affidavit (Parent)</li>
+      <li>Undertaking Form (Student &amp; Parent)</li><li>Guarantee Letter (international students)</li>
+      <li>Notary Affidavit (name/spelling mismatch)</li><li>Affidavit for Gap in Study</li>
+      <li>Gazette Notification (name change)</li><li>Self-Declaration (Aadhaar address update)</li>
+      <li>No Objection Certificate (NOC)</li><li>Proof of Relationship Affidavit</li>
+      <li>Undertaking for Conduct &amp; Rules</li><li>Hostel Undertaking</li>
+      <li>Physical Fitness Declaration</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="sage" open id="financial">
+    <summary>
+      <h2>Financial &amp; Scholarship Documents</h2>
+      <div class="cat-meta"><span class="count-pill">18 documents</span><span class="core-tag">Core</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Education Loan Application Form</li><li>Education Loan Sanction Letter</li>
+      <li>Income Certificate (for scholarship)</li><li>Income Tax Returns — last 2 years (Co-applicant)</li>
+      <li>Salary Slips — last 3 months (Co-applicant)</li><li>Bank Statements — 6–12 months</li>
+      <li>Form 16 (Co-applicant)</li><li>Collateral / Property Documents</li>
+      <li>Guarantor's Identity &amp; Address Proof</li><li>Bank Account Details (Student)</li>
+      <li>Bank Account Passbook Copy (Aadhaar-seeded)</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="gold" id="international">
+    <summary>
+      <h2>International Student Documents</h2>
+      <div class="cat-meta"><span class="count-pill">8 documents</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Student Visa (High Commission of India)</li><li>OCI Card</li>
+      <li>Foreign Passport (home country)</li><li>Residential Permit / PR Card</li>
+      <li>Embassy Certificate</li><li>Employer Certificate (NRI sponsored)</li>
+      <li>FRRO Registration</li><li>Police Clearance Certificate</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="indigo" id="admin">
+    <summary>
+      <h2>Administrative &amp; Often Overlooked</h2>
+      <div class="cat-meta"><span class="count-pill">14 documents</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Student Profile (fresher's portal)</li><li>APAAR ID / ABC ID</li>
+      <li>Copy of Student Profile (admission portal)</li><li>Address Proof of Parent(s)</li>
+      <li>Undertaking Form</li><li>Blood Group Report</li>
+      <li>Educational Gap Certificate</li><li>Ration Card (family composition)</li>
+      <li>Number of Children Certificate</li><li>Caste Validity Certificate</li>
+      <li>Nativity Certificate</li><li>Domicile Certificate</li>
+    </ul></div>
+  </details>
+
+  <details class="cat" data-accent="seal" id="dept">
+    <summary>
+      <h2>By Issuing Department (reference)</h2>
+      <div class="cat-meta"><span class="count-pill">Municipal · Tehsil · Banking</span><span class="chevron">+</span></div>
+    </summary>
+    <div class="doc-list"><ul>
+      <li>Death Certificate</li><li>Marriage Certificate</li><li>Non-Availability of Birth Certificate</li>
+      <li>Family Member Certificate / Kutumb Nond</li><li>Residence Certificate</li>
+      <li>Senior Citizen Certificate</li><li>Property Tax Receipt</li><li>Trade License</li>
+      <li>Shop &amp; Establishment Certificate</li><li>Water Tax Bill</li>
+      <li>Legal Heir Certificate</li><li>Heirship Certificate</li><li>Solvency Certificate</li>
+      <li>Land Record Documents (7/12, 8A)</li><li>Non-Creamy Layer Certificate</li>
+      <li>Agriculture / Farmer Certificate</li><li>Cancelled Cheque</li>
+      <li>UPI-linked Bank Proof</li><li>Credit Score Report</li><li>Loan Repayment Statement</li>
+    </ul></div>
+  </details>
+
+</main>
+
+<footer>Sarthi - X — Document Master List, v1 scope</footer>
+
+<script type="module" src="/src/common.js"></script>
+</body>
+</html>

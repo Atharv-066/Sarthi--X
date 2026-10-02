@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarthi - X — Your Document Friend in the Government Maze</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  :root{
+    --blue:#1652F0; --blue-dark:#0F3ECC; --blue-light:#EAF0FF;
+    --navy:#0F1B3D; --ink-soft:#5B6478;
+    --green:#16A34A; --green-bg:#EAF9EF;
+    --amber:#F59E0B; --amber-bg:#FFF6E6;
+    --purple:#7C3AED; --purple-bg:#F4EEFF;
+    --sky:#EAF3FF;
+  }
+  body{ background:#fff; }
+
+  header.site2{ background:#fff; border-bottom:1px solid #EEF1F7; position:sticky; top:0; z-index:200; transition:box-shadow .2s ease; }
+  header.site2.scrolled{ box-shadow:0 2px 10px rgba(15,27,61,0.06); }
+  .nav-row2{ display:flex; align-items:center; gap:22px; padding:14px 32px; max-width:1320px; margin:0 auto; flex-wrap:wrap; }
+  .logo2{ display:flex; align-items:center; gap:10px; margin-right:auto; }
+  .logo2 .mark{ width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,#1652F0,#4C7CFF); display:flex; align-items:center; justify-content:center; }
+  .logo2 .word{ font-family:'Poppins'; font-weight:800; font-size:20px; color:var(--navy); line-height:1.1; }
+  .logo2 .word span{ color:var(--blue); }
+  .logo2 .tag{ font-size:11px; color:var(--ink-soft); }
+  nav.main2{ display:flex; gap:4px; flex-wrap:wrap; }
+  nav.main2 a{ font-size:13.5px; font-weight:600; color:#3C4459; padding:10px 16px; border-radius:22px; display:flex; align-items:center; gap:7px; }
+  nav.main2 a.active{ background:var(--blue); color:#fff; }
+  nav.main2 a:hover:not(.active){ background:var(--blue-light); color:var(--blue); }
+  nav.main2 svg{ width:16px; height:16px; }
+  .header-right2{ display:flex; align-items:center; gap:10px; position:relative; }
+  .lang-btn{ display:flex; align-items:center; gap:6px; border:1px solid #E4E9F2; border-radius:20px; padding:9px 14px; font-size:13px; color:#3C4459; background:#fff; cursor:pointer; }
+  .lang-menu{ position:absolute; top:46px; right:120px; background:#fff; border:1px solid #E4E9F2; border-radius:10px; box-shadow:0 8px 24px rgba(15,27,61,0.12); padding:6px; display:none; flex-direction:column; min-width:140px; z-index:50;}
+  .lang-menu.open{ display:flex; }
+  .lang-menu a{ padding:8px 12px; border-radius:7px; font-size:13px; color:var(--navy); }
+  .lang-menu a:hover{ background:var(--blue-light); }
+  .btn-login2{ background:var(--blue); color:#fff; padding:11px 22px; border-radius:20px; font-weight:600; font-size:13.5px; display:flex; align-items:center; gap:7px; }
+  .btn-login2:hover{ background:var(--blue-dark); }
+
+  .hero2{ background:linear-gradient(180deg,#F3F8FF 0%, #FFFFFF 100%); padding:48px 0 0; }
+  .hero-grid2{ max-width:1320px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.15fr 1.3fr 0.95fr; gap:24px; align-items:center; }
+  .badge2{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #DCE8FF; color:var(--blue); font-size:12px; font-weight:600; padding:7px 14px; border-radius:20px; margin-bottom:20px; }
+  .badge2 .d{ width:6px; height:6px; border-radius:50%; background:var(--green); }
+  .hero2 h1{ font-family:'Poppins'; font-weight:800; font-size:clamp(30px,3.6vw,42px); line-height:1.14; color:var(--navy); }
+  .hero2 h1 .blue{ color:var(--blue); }
+  .hero2 p.sub{ color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:42ch; line-height:1.6; }
+  .stat-row2{ display:flex; gap:14px; margin-top:26px; flex-wrap:wrap; }
+  .stat-card2{ background:#fff; border:1px solid #E9EEF7; border-radius:14px; padding:13px 18px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 14px rgba(15,27,61,0.04); }
+  .stat-card2 .ic{ width:38px; height:38px; border-radius:50%; background:var(--blue-light); display:flex; align-items:center; justify-content:center; }
+  .stat-card2 .n{ font-family:'Poppins'; font-weight:800; font-size:19px; color:var(--navy); }
+  .stat-card2 .l{ font-size:11.5px; color:var(--ink-soft); }
+
+  .illustration{ position:relative; height:420px; display:flex; align-items:flex-end; justify-content:center; }
+  .privacy-note2{ text-align:center; margin-top:6px; font-size:12.5px; color:var(--ink-soft); display:flex; align-items:center; justify-content:center; gap:6px; }
+
+  .get-started{ background:#fff; border-radius:18px; border:1px solid #E9EEF7; box-shadow:0 12px 36px rgba(15,27,61,0.08); padding:26px; }
+  .get-started h3{ font-family:'Poppins'; font-size:18px; }
+  .get-started > p{ color:var(--ink-soft); font-size:13px; margin-top:6px; }
+  .gs-field{ margin-top:15px; }
+  .gs-field .lbl{ font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:6px; display:flex; align-items:center; gap:7px; }
+  .gs-select{ position:relative; }
+  .gs-select select{
+    width:100%; appearance:none; border:1.5px solid #E4E9F2; border-radius:11px; padding:13px 38px 13px 40px;
+    font-size:14px; font-family:'Inter'; color:var(--navy); background:#F8FAFD; cursor:pointer;
+  }
+  .gs-select select:focus{ outline:none; border-color:var(--blue); background:#fff; }
+  .gs-select .field-ic{ position:absolute; left:12px; top:50%; transform:translateY(-50%); }
+  .gs-select .chev{ position:absolute; right:12px; top:50%; transform:translateY(-50%); pointer-events:none; color:var(--ink-soft); }
+  .analyze-btn{
+    width:100%; margin-top:22px; background:var(--blue); color:#fff; border:none; border-radius:12px;
+    padding:15px; font-weight:700; font-size:13.5px; letter-spacing:.03em; display:flex; align-items:center;
+    justify-content:center; gap:9px; cursor:pointer; transition:background .15s ease, transform .1s ease;
+  }
+  .analyze-btn:hover{ background:var(--blue-dark); }
+  .analyze-btn:active{ transform:scale(0.98); }
+
+  .features2{ max-width:1320px; margin:0 auto; padding:56px 32px 8px; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .feat-card{ border-radius:18px; padding:24px 22px 20px; position:relative; overflow:hidden; min-height:210px; display:flex; flex-direction:column; }
+  .feat-card.green{ background:var(--green-bg); }
+  .feat-card.amber{ background:var(--amber-bg); }
+  .feat-card.purple{ background:var(--purple-bg); }
+  .feat-card.blue{ background:var(--sky); }
+  .feat-card .fic{ width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+  .feat-card.green .fic{ background:var(--green); }
+  .feat-card.amber .fic{ background:var(--amber); }
+  .feat-card.purple .fic{ background:var(--purple); }
+  .feat-card.blue .fic{ background:var(--blue); }
+  .feat-card h4{ font-family:'Poppins'; font-size:16px; margin-bottom:5px; }
+  .feat-card p{ font-size:12.5px; color:var(--ink-soft); margin:0 0 14px; max-width:22ch; }
+  .feat-card .explore{ margin-top:auto; display:inline-flex; align-items:center; gap:6px; background:#fff; border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:700; color:var(--navy); width:fit-content; }
+  .feat-card .explore:hover{ color:var(--blue); }
+  .feat-card .deco{ position:absolute; right:-14px; bottom:-10px; opacity:0.95; }
+
+  .trust2{ max-width:1320px; margin:0 auto; padding:44px 32px 60px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:22px; }
+  .trust-item2{ display:flex; align-items:flex-start; gap:11px; flex:1; min-width:180px; }
+  .trust-item2 .ti-ic{ width:34px; height:34px; border-radius:50%; background:var(--blue-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .trust-item2 b{ display:block; font-size:13.5px; color:var(--navy); }
+  .trust-item2 span{ font-size:12px; color:var(--ink-soft); }
+
+  @media(max-width:1080px){
+    .hero-grid2{ grid-template-columns:1fr; }
+    .illustration{ order:-1; height:300px; }
+    .features2{ grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:560px){ .features2{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site2" id="siteHeader">
+  <div class="nav-row2">
+    <div class="logo2">
+      <div class="mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
+      <div><div class="word">Sarthi <span>- X</span></div><div class="tag">Your Document Friend in the Government Maze</div></div>
+    </div>
+    <nav class="main2">
+      <a href="index.html" class="active"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Quick Access</a>
+      <a href="updates.html"><svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Live Updates</a>
+      <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Popular Documents</a>
+      <a href="about.html"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 8v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>About Us</a>
+    </nav>
+    <div class="header-right2">
+      <div class="lang-btn" id="langBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" stroke="currentColor" stroke-width="1.6"/></svg>
+        English
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="lang-menu" id="langMenu">
+        <a href="#">English</a><a href="#">मराठी</a><a href="#">हिंदी</a>
+      </div>
+      <a href="#" class="btn-login2">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        Login
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="hero2">
+  <div class="hero-grid2">
+
+    <div class="hero-copy">
+      <div class="badge2"><span class="d"></span>AI-Powered • 100% Accurate • Amravati Verified</div>
+      <h1>Your Document Friend<br>in the <span class="blue">Government Maze</span></h1>
+      <p class="sub">Stop wandering from office to office. Search any document and get your exact Amravati roadmap — office, officer, and form — in just 2 minutes.</p>
+      <div class="stat-row2">
+        <div class="stat-card2"><div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#1652F0" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#1652F0" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#1652F0" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="n" data-count="500">0</div><div class="l">Students Helped</div></div></div>
+        <div class="stat-card2"><div class="ic" style="background:#EAF9EF;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#16A34A" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="n" data-count="2000">0</div><div class="l">Hours Saved</div></div></div>
+      </div>
+    </div>
+
+    <div class="illustration">
+      <svg viewBox="0 0 560 420" width="100%" height="100%" style="max-width:520px;">
+        <ellipse cx="280" cy="400" rx="230" ry="14" fill="#DCE8FF" opacity="0.5"/>
+
+        <g opacity="0.55">
+          <rect x="430" y="150" width="70" height="130" fill="#C7D9FF"/>
+          <polygon points="430,150 465,110 500,150" fill="#B7CDFF"/>
+          <rect x="455" y="130" width="20" height="24" fill="#C7D9FF"/>
+          <rect x="440" y="180" width="12" height="16" fill="#EAF0FF"/>
+          <rect x="460" y="180" width="12" height="16" fill="#EAF0FF"/>
+          <rect x="480" y="180" width="12" height="16" fill="#EAF0FF"/>
+          <rect x="440" y="210" width="12" height="16" fill="#EAF0FF"/>
+          <rect x="460" y="210" width="12" height="16" fill="#EAF0FF"/>
+          <rect x="480" y="210" width="12" height="16" fill="#EAF0FF"/>
+        </g>
+
+        <rect x="270" y="90" width="10" height="230" rx="3" fill="#6B4A2E"/>
+        <g font-family="Poppins, sans-serif" font-weight="700" font-size="14">
+          <g transform="translate(150,80)">
+            <path d="M0 0 h130 l14 15 -14 15 h-130 z" fill="#1652F0"/>
+            <text x="20" y="20" fill="#fff">ADMISSION</text>
+          </g>
+          <g transform="translate(160,118)">
+            <path d="M0 0 h120 l14 15 -14 15 h-120 z" fill="#16A34A"/>
+            <text x="18" y="20" fill="#fff">SCHOLARSHIP</text>
+          </g>
+          <g transform="translate(150,156)">
+            <path d="M0 0 h95 l14 15 -14 15 h-95 z" fill="#F59E0B"/>
+            <text x="18" y="20" fill="#fff">LOAN</text>
+          </g>
+          <g transform="translate(140,194)">
+            <path d="M0 0 h140 l14 15 -14 15 h-140 z" fill="#7C3AED"/>
+            <text x="16" y="20" fill="#fff">STUDY ABROAD</text>
+          </g>
+          <g transform="translate(150,232)">
+            <path d="M0 0 h130 l14 15 -14 15 h-130 z" fill="#E1483B"/>
+            <text x="16" y="20" fill="#fff">CERTIFICATES</text>
+          </g>
+        </g>
+
+        <g transform="translate(60,140)">
+          <ellipse cx="70" cy="255" rx="55" ry="10" fill="#DCE8FF"/>
+          <rect x="10" y="110" width="42" height="70" rx="12" fill="#16A34A"/>
+          <rect x="45" y="195" width="20" height="65" rx="8" fill="#2B3A67"/>
+          <rect x="75" y="195" width="20" height="65" rx="8" fill="#2B3A67"/>
+          <rect x="42" y="252" width="26" height="12" rx="5" fill="#141B33"/>
+          <rect x="72" y="252" width="26" height="12" rx="5" fill="#141B33"/>
+          <path d="M35 120 q35 -22 70 0 l6 80 q-41 18 -82 0 z" fill="#1652F0"/>
+          <rect x="60" y="120" width="20" height="18" fill="#EAF0FF"/>
+          <path d="M100 135 q28 -6 40 -22" stroke="#1652F0" stroke-width="16" stroke-linecap="round" fill="none"/>
+          <circle cx="142" cy="110" r="9" fill="#F3C9A0"/>
+          <rect x="90" y="150" width="34" height="24" rx="3" fill="#F59E0B"/>
+          <rect x="90" y="150" width="34" height="6" fill="#FFD98A"/>
+          <circle cx="70" cy="95" r="26" fill="#F3C9A0"/>
+          <path d="M46 92 q0 -34 24 -34 q26 0 26 30 q-10 -12 -26 -12 q-16 0 -24 16 z" fill="#141B33"/>
+          <circle cx="61" cy="97" r="2.4" fill="#141B33"/>
+          <circle cx="79" cy="97" r="2.4" fill="#141B33"/>
+          <path d="M62 107 q8 6 16 0" stroke="#141B33" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <g transform="translate(390,190)">
+          <ellipse cx="45" cy="185" rx="42" ry="9" fill="#DCE8FF"/>
+          <rect x="15" y="60" width="60" height="70" rx="18" fill="#EAF0FF" stroke="#B7CDFF" stroke-width="2"/>
+          <circle cx="33" cy="90" r="6" fill="#1652F0"/>
+          <circle cx="57" cy="90" r="6" fill="#1652F0"/>
+          <path d="M33 108 q12 8 24 0" stroke="#1652F0" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="40" y="40" width="10" height="18" fill="#B7CDFF"/>
+          <circle cx="45" cy="36" r="6" fill="#1652F0"/>
+          <rect x="0" y="135" width="90" height="45" rx="14" fill="#FFFFFF" stroke="#B7CDFF" stroke-width="2"/>
+          <rect x="-12" y="140" width="18" height="30" rx="8" fill="#EAF0FF" stroke="#B7CDFF" stroke-width="2"/>
+          <rect x="84" y="140" width="18" height="30" rx="8" fill="#EAF0FF" stroke="#B7CDFF" stroke-width="2"/>
+          <rect x="20" y="148" width="24" height="18" rx="3" fill="#16A34A"/>
+          <path d="M24 157h16M24 152h10" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="get-started">
+      <h3>Let's Get Started!</h3>
+      <p>Tell us about yourself to get your accurate document requirements.</p>
+
+      <div class="gs-field">
+        <div class="lbl">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 10 12 4 2 10l10 6 10-6Z" stroke="#0F1B3D" stroke-width="2" stroke-linejoin="round"/><path d="M6 12v6c0 1 3 3 6 3s6-2 6-3v-6" stroke="#0F1B3D" stroke-width="2" stroke-linejoin="round"/></svg>
+          Education Level
+        </div>
+        <div class="gs-select">
+          <select id="fEducation">
+            <option value="">Select Education Level</option>
+            <option>10th / SSC</option>
+            <option>12th / HSC</option>
+            <option>Undergraduate (UG)</option>
+            <option>Postgraduate (PG)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="gs-field">
+        <div class="lbl">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.6 7-12A7 7 0 0 0 5 10c0 5.4 7 12 7 12Z" stroke="#0F1B3D" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="#0F1B3D" stroke-width="2"/></svg>
+          Your City
+        </div>
+        <div class="gs-select">
+          <select id="fCity">
+            <option>Amravati</option>
+            <option disabled>More cities coming soon</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="gs-field">
+        <div class="lbl">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0F1B3D" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#0F1B3D" stroke-width="2"/><circle cx="12" cy="12" r="0.8" fill="#0F1B3D"/></svg>
+          Your Purpose
+        </div>
+        <div class="gs-select">
+          <select id="fPurpose">
+            <option value="">Select Purpose</option>
+            <option>Admission</option>
+            <option>Scholarship</option>
+            <option>Education Loan</option>
+            <option>Study Abroad</option>
+            <option>Certificates</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="gs-field">
+        <div class="lbl">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#0F1B3D" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#0F1B3D" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#0F1B3D" stroke-width="2" stroke-linecap="round"/></svg>
+          Your Category
+        </div>
+        <div class="gs-select">
+          <select id="fCategory">
+            <option value="">Select Category</option>
+            <option>General</option>
+            <option>OBC</option>
+            <option>SC / ST</option>
+            <option>EWS</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="analyze-btn" id="analyzeBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="m21 21-4.3-4.3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        ANALYZE MY REQUIREMENTS
+      </button>
+    </div>
+  </div>
+
+  <div class="privacy-note2">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="4" y="11" width="16" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="2"/></svg>
+    Your data is safe and will never be shared.
+  </div>
+</section>
+
+<section class="features2">
+  <div class="feat-card green">
+    <div class="fic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="#fff"/></svg></div>
+    <h4>Quick Access</h4>
+    <p>Get instant access to all important services.</p>
+    <a href="dashboard.html" class="explore">Explore Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <svg class="deco" width="80" height="80" viewBox="0 0 24 24" fill="none" opacity="0.25"><rect x="6" y="2" width="12" height="20" rx="3" stroke="#16A34A" stroke-width="1.6"/><path d="M10 6h4M9 18h6" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </div>
+
+  <div class="feat-card amber">
+    <div class="fic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h4>Live Updates</h4>
+    <p>Stay updated with latest deadlines and news.</p>
+    <a href="updates.html" class="explore">Explore Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <svg class="deco" width="80" height="80" viewBox="0 0 24 24" fill="none" opacity="0.25"><path d="M4 14l5-3v9l-5-3z" stroke="#F59E0B" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 11l10-5v13l-10-5" stroke="#F59E0B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  </div>
+
+  <div class="feat-card purple">
+    <div class="fic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+    <h4>Popular Documents</h4>
+    <p>Find most searched documents here.</p>
+    <a href="dashboard.html" class="explore">Explore Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <svg class="deco" width="80" height="80" viewBox="0 0 24 24" fill="none" opacity="0.25"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#7C3AED" stroke-width="1.6"/><path d="M3 10h18" stroke="#7C3AED" stroke-width="1.6"/></svg>
+  </div>
+
+  <div class="feat-card blue">
+    <div class="fic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/><path d="M12 11v6M12 8v.01" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h4>About Us</h4>
+    <p>Know more about Sarthi - X.</p>
+    <a href="about.html" class="explore">Explore Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <svg class="deco" width="80" height="80" viewBox="0 0 24 24" fill="none" opacity="0.25"><path d="M4 21V9l8-5 8 5v12" stroke="#1652F0" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="#1652F0" stroke-width="1.6"/></svg>
+  </div>
+</section>
+
+<section class="trust2">
+  <div class="trust-item2"><div class="ti-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.5 8.7 8 11 4.5-2.3 8-6 8-11V5z" stroke="#16A34A" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><b>Official Sources Verified</b><span>All information from government websites</span></div></div>
+  <div class="trust-item2"><div class="ti-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="11" width="16" height="9" rx="2" stroke="#1652F0" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#1652F0" stroke-width="2"/></svg></div><div><b>Secure &amp; Private</b><span>Your data is safe with us</span></div></div>
+  <div class="trust-item2"><div class="ti-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="13" rx="3" stroke="#7C3AED" stroke-width="2"/><circle cx="9" cy="13" r="1.3" fill="#7C3AED"/><circle cx="15" cy="13" r="1.3" fill="#7C3AED"/><path d="M10 3h4" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/></svg></div><div><b>AI-Powered Guidance</b><span>Smart recommendations just for you</span></div></div>
+  <div class="trust-item2"><div class="ti-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-3-6.7" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/><path d="M21 3v6h-6" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><b>Always Updated</b><span>Real-time updates and notifications</span></div></div>
+  <div class="trust-item2"><div class="ti-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 18v-6a9 9 0 0 1 18 0v6" stroke="#1652F0" stroke-width="2"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" stroke="#1652F0" stroke-width="2" stroke-linejoin="round"/></svg></div><div><b>24/7 Support</b><span>We're here to help you anytime</span></div></div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div><div class="brand">Sarthi - X</div><small>Your Document Friend in the Government Maze — Amravati Pilot</small></div>
+  </div>
+</footer>
+
+<script type="module" src="/src/home.js"></script>
+</body>
+</html>

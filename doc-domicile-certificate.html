@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domicile Certificate — Sarthi - X</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .breadcrumb{ padding:18px 0 0; font-size:13px; color:var(--ink-soft); }
+  .breadcrumb a:hover{ color:var(--blue); }
+  .doc-hero{ padding:16px 0 30px; display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; }
+  .doc-hero .icon-badge{ width:64px; height:64px; font-size:30px; }
+  .doc-hero h1{ font-size:27px; }
+  .doc-hero p.desc{ color:var(--ink-soft); font-size:14.5px; margin-top:6px; max-width:60ch; }
+  .kpi-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:16px; }
+  .kpi{ padding:12px 16px; display:flex; align-items:center; gap:10px; min-width:150px; }
+  .kpi .n{ font-family:'Poppins'; font-weight:700; font-size:15px; }
+  .kpi .l{ font-size:11.5px; color:var(--ink-soft); }
+
+  .layout{ display:grid; grid-template-columns:2.1fr 1fr; gap:28px; padding-bottom:60px; }
+
+  .steps-title{ font-size:19px; margin-bottom:18px; }
+  .step{ display:flex; gap:16px; margin-bottom:6px; }
+  .step .rail{ display:flex; flex-direction:column; align-items:center; }
+  .step .num{ width:34px; height:34px; border-radius:50%; background:var(--blue); color:#fff; font-family:'Poppins'; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step .connector{ width:2px; flex:1; background:var(--line); margin:4px 0; }
+  .step:last-child .connector{ display:none; }
+  .step-card{ padding:18px 20px; margin-bottom:20px; flex:1; }
+  .step-card h3{ font-size:16px; margin-bottom:8px; }
+  .step-card p{ font-size:13.5px; color:var(--ink-soft); margin:0 0 12px; }
+  .step-detail-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .step-detail{ background:var(--bg); border-radius:10px; padding:10px 12px; font-size:12.5px; }
+  .step-detail .k{ color:var(--ink-soft); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.03em; margin-bottom:3px; }
+  .step-detail .v{ color:var(--navy); font-weight:600; }
+
+  .side-card{ padding:22px; margin-bottom:20px; }
+  .side-card h4{ font-size:15px; margin-bottom:12px; }
+  .checklist{ list-style:none; margin:0; padding:0; }
+  .checklist li{ display:flex; align-items:flex-start; gap:9px; font-size:13.5px; padding:7px 0; border-bottom:1px solid var(--line); }
+  .checklist li:last-child{ border-bottom:none; }
+  .checklist li .tick{ color:var(--green); font-weight:700; }
+  .form-item{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px; }
+  .form-item:last-child{ border-bottom:none; }
+  .related-row{ display:flex; flex-direction:column; gap:8px; }
+  .related-row a{ font-size:13.5px; font-weight:600; padding:9px 12px; border-radius:9px; background:var(--bg); }
+  .related-row a:hover{ color:var(--blue); }
+
+  @media(max-width:880px){ .layout{ grid-template-columns:1fr; } .step-detail-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <div class="logo">
+      <div class="mark">📄</div>
+      <div><div class="word">Sarthi <span>- X</span></div><div class="tag">Your Document Friend in the Government Maze</div></div>
+    </div>
+    <nav class="main">
+      <a href="index.html">🏠 Home</a>
+      <a href="dashboard.html" class="active">⚡ Quick Access</a>
+      <a href="updates.html">🔔 Live Updates</a>
+      <a href="dashboard.html">📄 Popular Documents</a>
+      <a href="about.html">ℹ️ About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang">🌐 English ⌄</div>
+      <a href="#" class="btn-login">👤 Login</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap breadcrumb"><a href="index.html">Home</a> / <a href="dashboard.html">Documents</a> / Domicile Certificate</div>
+
+<div class="wrap doc-hero">
+  <div class="icon-badge ib-purple">🏛️</div>
+  <div style="flex:1; min-width:260px;">
+    <h1>Domicile Certificate</h1>
+    <p class="desc">Proof of residence in Maharashtra, required for state-quota college admissions and several scholarships.</p>
+    <div class="kpi-row">
+      <div class="card kpi"><div class="icon-badge ib-green" style="width:34px;height:34px;font-size:15px;">⏱️</div><div><div class="n">15–21 days</div><div class="l">Processing time</div></div></div>
+      <div class="card kpi"><div class="icon-badge ib-amber" style="width:34px;height:34px;font-size:15px;">💵</div><div><div class="n">₹33 (self-attested + stamp)</div><div class="l">Govt. fee</div></div></div>
+      <div class="card kpi"><div class="icon-badge ib-purple" style="width:34px;height:34px;font-size:15px;">🏢</div><div><div class="n">2 visits</div><div class="l">Office visits</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap layout">
+  <div>
+    <h2 class="steps-title">Step-by-step guide (Amravati)</h2>
+    
+    <div class="step">
+      <div class="rail"><div class="num">1</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Collect and fill the application form</h3>
+        <p>Get Form 16 from the Tehsil office or download it, and fill in your residential history.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">Tehsil Office, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Clerk, Citizen Facilitation Counter</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">Domicile Certificate Application (Form 16)</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">20 min</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="rail"><div class="num">2</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Submit with supporting documents</h3>
+        <p>Attach residence proof and the notarised self-declaration affidavit at the submission counter.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">Tehsil Office, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Naib Tehsildar</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">Form 16 + Affidavit</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">15 min</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="rail"><div class="num">3</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Field verification (if required)</h3>
+        <p>A revenue official may visit your residence to verify the address on record.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">Your residence, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Talathi (Village-level officer)</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">—</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">3–5 days</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="rail"><div class="num">4</div><div class="connector"></div></div>
+      <div class="card step-card">
+        <h3>Approval and collection</h3>
+        <p>Once verified, the Tehsildar signs off and the certificate is issued at the counter or via Aaple Sarkar portal.</p>
+        <div class="step-detail-grid">
+          <div class="step-detail"><div class="k">🏢 Office</div><div class="v">Tehsil Office, Amravati</div></div>
+          <div class="step-detail"><div class="k">👤 Meet</div><div class="v">Tehsildar</div></div>
+          <div class="step-detail"><div class="k">📝 Form</div><div class="v">—</div></div>
+          <div class="step-detail"><div class="k">⏱️ Time</div><div class="v">1–2 days</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card side-card">
+      <h4>📋 Documents to carry</h4>
+      <ul class="checklist"><li><span class="tick">✓</span>Aadhaar Card</li><li><span class="tick">✓</span>School Leaving Certificate</li><li><span class="tick">✓</span>Residence proof (ration card / light bill)</li><li><span class="tick">✓</span>Self-declaration affidavit (₹100 stamp paper)</li></ul>
+    </div>
+    <div class="card side-card">
+      <h4>📝 Forms to download</h4>
+      <div class="form-item"><span>📄 Domicile Certificate Application (Form 16)</span><a href="#" class="chip chip-outline">Download</a></div><div class="form-item"><span>📄 Residence Self-Declaration Affidavit</span><a href="#" class="chip chip-outline">Download</a></div>
+    </div>
+    <div class="card side-card">
+      <h4>🔗 Related documents</h4>
+      <div class="related-row"><a href="doc-caste-certificate.html">Caste Certificate →</a><a href="doc-income-certificate.html">Income Certificate →</a></div>
+    </div>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div><div class="brand">Sarthi - X</div><small>Your Document Friend in the Government Maze — Amravati Pilot</small></div>
+  </div>
+</footer>
+
+<script type="module" src="/src/docpage.js"></script>
+</body>
+</html>
