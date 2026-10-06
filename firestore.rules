@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Each signed-in user can read/write only their own profile document.
+    // Email + password accounts must have a VERIFIED email (Google and phone sign-in are verified by their own provider).
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid && emailOk();
+    }
+
+    function emailOk() {
+      return request.auth.token.firebase.sign_in_provider != 'password' || request.auth.token.email_verified == true;
+    }
+
+    // "Report wrong information" (src/report.js).
+    //  - Anyone (signed in or not) may CREATE a report, but only with exactly these fields and sane values.
+    //  - Nobody can read, list, update or delete reports from the website. Read them in the Firebase Console
+    //    (Firestore > information_reports) or with the Admin SDK, which is not subject to these rules.
+    // Keep the limits below equal to LIMITS / ISSUE_TYPES in src/lib/report-rules.js.
+    match /information_reports/{reportId} {
+      allow create: if validReport(request.resource.data);
+      allow read, update, delete: if false;
+    }
+
+    function validReport(d) {
+      return d.keys().hasOnly(['guideId', 'guideTitle', 'issueType', 'description', 'contact', 'pageUrl', 'language', 'createdAt', 'status'])
+        && d.keys().hasAll(['guideId', 'guideTitle', 'issueType', 'description', 'contact', 'pageUrl', 'language', 'createdAt', 'status'])
+        && d.guideId is string && d.guideId.size() > 0 && d.guideId.size() <= 100 && d.guideId.matches('^[a-z0-9-]+$')
+        && d.guideTitle is string && d.guideTitle.size() <= 200
+        && d.issueType in [
+          'Fee is incorrect', 'Processing time is incorrect', 'Required documents are incorrect', 'Office/address is incorrect',
+          'Contact information is incorrect', 'Website/link is not working', 'Procedure is incorrect', 'Translation is incorrect', 'Other'
+        ]
+        && d.description is string && d.description.size() >= 10 && d.description.size() <= 2000
+        && (d.contact == null || (d.contact is string && d.contact.size() <= 200))
+        && d.pageUrl is string && d.pageUrl.size() <= 500
+        && d.language in ['en', 'mr', 'hi']
+        && d.createdAt == request.time
+        && d.status == 'new';
+    }
+  }
+}

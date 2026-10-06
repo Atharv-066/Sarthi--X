@@ -1,0 +1,21 @@
+{
+  "name": "sarthi-x",
+  "version": "10.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "validate-data": "node scripts/validate-data.mjs",
+    "translation-template": "node scripts/translation-template.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run validate-data && npm test && npm run build"
+  },
+  "dependencies": {
+    "firebase": "^12.0.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}

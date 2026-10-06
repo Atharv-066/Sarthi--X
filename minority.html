@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Scholarships and schemes for religious and linguistic minorities in Maharashtra, listed by religion or by language and by the certificates you hold.">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem("sx_theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}</script>
+<title>Minority Schemes — Sarthi - X</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#1652F0">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  [hidden]{ display:none !important; }
+  .search-bar-section{ background:var(--page,#fff); border-bottom:1px solid var(--line); padding:22px 0; }
+  .search-bar{ display:flex; gap:12px; align-items:center; background:var(--bg); border:1.5px solid var(--line); border-radius:14px; padding:6px 6px 6px 18px; flex-wrap:wrap; }
+  .search-bar .seg{ display:flex; align-items:center; gap:8px; flex:1; min-width:180px; }
+  .search-bar input{ border:none; background:transparent; outline:none; font-size:14.5px; width:100%; font-family:'Inter'; color:var(--ink); }
+  .search-bar .divider{ width:1px; height:26px; background:var(--line); }
+  .search-bar .city-seg{ display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:var(--navy); padding:0 6px; }
+
+  .results-head{ padding:26px 0 6px; }
+  .results-head h1{ font-size:23px; }
+  .results-head p{ color:var(--ink-soft); font-size:14px; margin-top:4px; }
+
+  .notice{ margin:14px 0 0; padding:12px 16px; border-radius:12px; background:var(--amber-bg); color:var(--ink); font-size:13px; border:1px solid rgba(245,158,11,.35); }
+  .notice b{ color:var(--navy); }
+  .notice.info{ background:var(--sky); border-color:var(--line); }
+  button.linkbtn{ border:0; background:none; font:inherit; font-size:13px; font-weight:600; color:var(--blue); cursor:pointer; padding:6px 4px; }
+  button.linkbtn:hover{ text-decoration:underline; }
+
+  /* view tabs: religious / linguistic minority (10.0) */
+  .mode-tabs{ display:flex; gap:8px; flex-wrap:wrap; padding:16px 0 0; }
+  button.mode-tab{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; cursor:pointer; padding:10px 18px; border-radius:999px; border:1.5px solid var(--line); background:var(--bg); color:var(--navy); transition:border-color .15s ease, background .15s ease; }
+  button.mode-tab:hover{ border-color:var(--blue); }
+  button.mode-tab.active{ background:var(--blue); border-color:var(--blue); color:#fff; }
+  button.mode-tab:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+
+  /* religion picker */
+  .rel-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:18px 0 8px; }
+  button.rel-card{ text-align:left; cursor:pointer; padding:18px 20px; border:1px solid var(--line); font-family:inherit; color:inherit; display:flex; flex-direction:column; gap:4px; transition:transform .15s ease, border-color .15s ease; }
+  button.rel-card:hover{ transform:translateY(-2px); border-color:var(--blue); }
+  button.rel-card .nm{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17px; color:var(--navy); }
+  button.rel-card .ct{ font-size:12.5px; color:var(--ink-soft); }
+  button.rel-card .go{ margin-top:8px; font-size:12.5px; font-weight:700; color:var(--blue); }
+  button.rel-card.everyone{ border-style:dashed; }
+
+  /* filters (shown once a group is chosen) */
+  .filters{ margin:16px 0 0; padding:16px 20px; }
+  .f-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .f-top .cur{ font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; color:var(--navy); }
+  .f-grid{ display:grid; grid-template-columns:minmax(0,260px) 1fr; gap:18px; margin-top:14px; align-items:start; }
+  .f-field label, .f-cert .lbl{ display:block; font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+  .f-field select{ width:100%; border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13.5px; font-family:'Inter'; color:var(--ink); background:var(--bg); cursor:pointer; }
+  .f-field select:focus{ outline:none; border-color:var(--blue); }
+  .f-cert .row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .f-cert .hint{ font-size:12px; color:var(--ink-soft); margin-top:8px; }
+  button.chip{ font-family:inherit; cursor:pointer; }
+
+  .sec-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; padding:18px 0 10px; align-items:start; }
+  .sec-card{ padding:18px 20px; }
+  .sec-card h3{ font-size:15.5px; line-height:1.35; }
+  .sec-card .qual{ font-size:12px; color:var(--ink-soft); margin-top:2px; }
+  .tags{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+  .tag{ font-size:11px; font-weight:600; padding:3px 9px; border-radius:11px; background:var(--bg); border:1px solid var(--line); color:var(--ink-soft); white-space:nowrap; }
+  .tag.t-cert{ background:var(--amber-bg); color:#9A6200; border-color:rgba(245,158,11,.4); }
+  .tag.t-verify{ background:var(--amber-bg); color:#9A6200; border-color:rgba(245,158,11,.4); }
+  .tag.t-kind{ background:var(--green-bg); color:#166534; border-color:rgba(22,163,74,.3); }
+  html[data-theme="dark"] .tag.t-cert, html[data-theme="dark"] .tag.t-verify{ color:var(--amber); }
+  html[data-theme="dark"] .tag.t-kind{ color:var(--green); }
+  ul.items{ list-style:none; margin:12px 0 0; padding:0; }
+  ul.items li{ padding:9px 0; border-top:1px solid var(--line-soft); font-size:13.5px; line-height:1.45; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap; }
+  ul.items li:first-child{ border-top:0; }
+  ul.items li .tx{ flex:1; min-width:0; overflow-wrap:anywhere; }
+  ul.items li.muted{ color:var(--ink-soft); font-style:italic; }
+  ul.items li.ptr{ color:var(--ink-soft); }
+  a.ext{ font-weight:700; color:var(--blue); text-decoration:none; padding:0 4px; }
+  a.ext:hover{ text-decoration:underline; }
+
+  .res-list{ display:grid; gap:12px; padding:18px 0 10px; }
+  .res-item{ padding:14px 18px; }
+  .res-item .tx{ font-size:14px; font-weight:600; color:var(--navy); line-height:1.4; }
+  .res-item .listed{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
+
+  details.rules{ margin:22px 0 0; padding:16px 20px; }
+  details.rules summary{ cursor:pointer; font-weight:700; color:var(--navy); font-size:14.5px; }
+  details.rules ul{ margin:10px 0 0 18px; font-size:13.5px; line-height:1.55; }
+  .portal-note{ font-size:12.5px; color:var(--ink-soft); padding:18px 0 60px; }
+
+  @media(max-width:900px){ .rel-grid{ grid-template-columns:repeat(2,1fr); } .sec-grid{ grid-template-columns:1fr; } .f-grid{ grid-template-columns:1fr; } .search-bar .divider{ display:none; } }
+  @media(max-width:480px){ .rel-grid{ grid-template-columns:1fr; } button.mode-tab{ flex:1 1 100%; text-align:center; } }
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="nav-row">
+    <div class="logo">
+      <div class="mark">📄</div>
+      <div><div class="word">Sarthi <span>- X</span></div><div class="tag">Your Document Friend in the Government Maze</div></div>
+    </div>
+    <nav class="main">
+      <a href="index.html">🏠 Home</a>
+      <a href="dashboard.html">📑 Documentation</a>
+      <a href="schemes.html">🎓 Schemes</a>
+      <a href="minority.html" class="active">🤝 Minority Schemes</a>
+      <a href="about.html">ℹ️ About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang">🌐 English ⌄</div>
+      <a href="#" class="btn-login">👤 Login</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-bar-section">
+  <div class="wrap">
+    <form class="search-bar" id="searchForm" role="search">
+      <div class="seg">🔍 <input type="search" id="q" aria-label="Search minority schemes" placeholder="Search schemes, e.g. scholarship, loan, PM VIKAS, MUDRA, hostel, agriculture" autocomplete="off"></div>
+      <div class="divider"></div>
+      <div class="city-seg">📍 Maharashtra</div>
+      <div class="divider"></div>
+      <button type="submit" class="btn btn-primary btn-sm">Search</button>
+    </form>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="results-head">
+    <h1 id="resTitle"></h1>
+    <p id="resSub"></p>
+  </div>
+
+  <div class="mode-tabs" id="modeTabs" role="tablist" aria-label="Type of minority">
+    <button type="button" role="tab" class="mode-tab active" data-m="religion" aria-selected="true">🙏 Religious minority</button>
+    <button type="button" role="tab" class="mode-tab" data-m="language" aria-selected="false">🗣️ Linguistic minority</button>
+  </div>
+
+  <div class="notice" id="notice" data-tr-unit><b>Read this first:</b> belonging to a religious minority does not by itself make you OBC, SBC, VJNT or SC. Sections marked <b>Only with official certificate</b> apply only if you hold that certificate.</div>
+
+  <div id="picker" class="rel-grid"></div>
+
+  <section class="card filters" id="filters" hidden>
+    <div class="f-top"><span class="cur" id="curName"></span><button type="button" class="linkbtn" id="backBtn">← All religions</button></div>
+    <div class="f-grid">
+      <div class="f-field"><label for="fType">Show</label><select id="fType"></select></div>
+      <div class="f-cert">
+        <div class="lbl">I hold an official certificate <span style="font-weight:500;color:var(--ink-soft)">(tap all that apply)</span></div>
+        <div class="row" id="certRow" role="group" aria-label="Certificates you hold"></div>
+        <div class="hint">With nothing ticked, every group is shown. Tick your certificates to hide groups you cannot use.</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="notes"></div>
+  <div id="results"></div>
+
+  <details class="card rules" id="rules" open>
+    <summary>Eligibility rules to remember</summary>
+    <ul id="rulesList"></ul>
+  </details>
+
+  <p class="portal-note" data-tr-unit>This list has scheme <b>names only</b>: amounts, income limits, last dates and application links are not included and change every year. Tap <b>↗</b> beside a scheme to search for its official page. Many Maharashtra schemes are applied for on the <a href="https://mahadbt.maharashtra.gov.in/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:600">MahaDBT portal</a> and central ones on the <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:600">National Scholarship Portal</a>. Applying is free; never pay an agent. For student scholarships by category and income, see the <a href="schemes.html?sp=minority" style="color:var(--blue);font-weight:600">Schemes page</a>.</p>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div><div class="brand">Sarthi - X</div><small>Your Document Friend in the Government Maze — Amravati Pilot</small></div>
+  </div>
+</footer>
+
+<script type="module" src="/src/minority.js"></script>
+</body>
+</html>

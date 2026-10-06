@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Find student scholarships and schemes in Maharashtra by category, income and education level.">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem("sx_theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}</script>
+<title>Student Schemes — Sarthi - X</title>
+<style>html.auth-pending{visibility:hidden}</style>
+<script>document.documentElement.classList.add("auth-pending")</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#1652F0">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  .search-bar-section{ background:var(--page,#fff); border-bottom:1px solid var(--line); padding:22px 0; }
+  .search-bar{ display:flex; gap:12px; align-items:center; background:var(--bg); border:1.5px solid var(--line); border-radius:14px; padding:6px 6px 6px 18px; flex-wrap:wrap; }
+  .search-bar .seg{ display:flex; align-items:center; gap:8px; flex:1; min-width:180px; }
+  .search-bar input{ border:none; background:transparent; outline:none; font-size:14.5px; width:100%; font-family:'Inter'; color:var(--ink); }
+  .search-bar .divider{ width:1px; height:26px; background:var(--line); }
+  .search-bar .city-seg{ display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:var(--navy); padding:0 6px; }
+
+  .results-head{ padding:26px 0 6px; }
+  .results-head h1{ font-size:23px; }
+  .results-head p{ color:var(--ink-soft); font-size:14px; margin-top:4px; }
+
+  /* Filter panel */
+  .filters{ margin:16px 0 0; padding:18px 20px; }
+  .filters summary{ cursor:pointer; font-weight:700; font-size:14px; color:var(--navy); display:none; list-style:none; }
+  .filters summary::-webkit-details-marker{ display:none; }
+  .f-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .f-field label{ display:block; font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+  .f-field select{ width:100%; border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13.5px; font-family:'Inter'; color:var(--ink); background:var(--bg); cursor:pointer; }
+  .f-field select:focus{ outline:none; border-color:var(--blue); }
+  .f-sit{ margin-top:16px; }
+  .f-sit .lbl{ font-size:11.5px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .f-sit .row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .f-sit .hint{ font-size:12px; color:var(--ink-soft); margin-top:8px; }
+  .f-actions{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft); }
+  .f-actions .active-count{ font-size:12.5px; color:var(--ink-soft); }
+  button.chip{ font-family:inherit; cursor:pointer; }
+  button.linkbtn{ border:0; background:none; font:inherit; font-size:13px; font-weight:600; color:var(--blue); cursor:pointer; padding:6px 4px; }
+  button.linkbtn:hover{ text-decoration:underline; }
+
+  .notice{ margin:14px 0 0; padding:12px 16px; border-radius:12px; background:var(--amber-bg); color:var(--ink); font-size:13px; border:1px solid rgba(245,158,11,.35); }
+  .notice b{ color:var(--navy); }
+  .notice.info{ background:var(--sky); border-color:var(--line); }
+
+  .stats-strip{ display:flex; gap:16px; flex-wrap:wrap; padding:18px 0 22px; }
+  .mini-stat{ flex:1; min-width:200px; padding:16px 18px; display:flex; align-items:center; gap:12px; }
+  .mini-stat .n{ font-family:'Poppins'; font-weight:700; font-size:18px; }
+  .mini-stat .l{ font-size:12px; color:var(--ink-soft); }
+
+  .results-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; padding-bottom:30px; }
+  .sch-card{ padding:20px 22px; display:flex; flex-direction:column; gap:10px; }
+  .sch-card .top-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .sch-card .no{ font-size:11px; font-weight:700; color:var(--ink-soft); background:var(--bg); border:1px solid var(--line); padding:2px 9px; border-radius:10px; white-space:nowrap; }
+  .sch-card h3{ font-size:15.5px; line-height:1.35; }
+  .sch-card .grp{ font-size:12px; color:var(--ink-soft); }
+  .tags{ display:flex; gap:6px; flex-wrap:wrap; }
+  .tag{ font-size:11px; font-weight:600; padding:3px 9px; border-radius:11px; background:var(--bg); border:1px solid var(--line); color:var(--ink-soft); white-space:nowrap; }
+  .tag.t-need{ background:var(--amber-bg); color:#9A6200; border-color:rgba(245,158,11,.4); }
+  .tag.t-merit{ background:var(--purple-bg); color:#5B21B6; border-color:rgba(124,58,237,.25); }
+  .tag.t-for{ background:var(--green-bg); color:#166534; border-color:rgba(22,163,74,.3); }
+  html[data-theme="dark"] .tag.t-for{ color:var(--green); }
+  html[data-theme="dark"] .tag.t-need{ color:var(--amber); }
+  html[data-theme="dark"] .tag.t-merit{ color:var(--purple); }
+  .docs-line{ font-size:12.5px; color:var(--ink-soft); display:flex; gap:6px 10px; flex-wrap:wrap; align-items:center; }
+  .docs-line a{ font-weight:600; color:var(--blue); }
+  .docs-line a:hover{ text-decoration:underline; }
+  .sch-card .foot{ margin-top:auto; padding-top:4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+
+  .portal-note{ font-size:12.5px; color:var(--ink-soft); padding:0 0 60px; }
+
+  @media(max-width:1100px){ .f-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media(max-width:820px){
+    .results-grid{ grid-template-columns:1fr; } .search-bar .divider{ display:none; }
+    .filters summary{ display:block; }
+    .filters:not([open]) .f-body{ display:none; }
+    .f-grid{ grid-template-columns:1fr 1fr; margin-top:14px; }
+  }
+  @media(max-width:600px){ .stats-strip{ gap:8px; } .mini-stat{ min-width:0; padding:10px 12px; flex-direction:column; align-items:flex-start; gap:6px; } .mini-stat .icon-badge{ display:none; } .mini-stat .n{ font-size:16px; } }
+  @media(max-width:480px){ .f-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="nav-row">
+    <div class="logo">
+      <div class="mark">📄</div>
+      <div><div class="word">Sarthi <span>- X</span></div><div class="tag">Your Document Friend in the Government Maze</div></div>
+    </div>
+    <nav class="main">
+      <a href="index.html">🏠 Home</a>
+      <a href="dashboard.html">📑 Documentation</a>
+      <a href="schemes.html" class="active">🎓 Schemes</a>
+      <a href="minority.html">🤝 Minority Schemes</a>
+      <a href="about.html">ℹ️ About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang">🌐 English ⌄</div>
+      <a href="#" class="btn-login">👤 Login</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-bar-section">
+  <div class="wrap">
+    <form class="search-bar" id="searchForm" role="search">
+      <div class="seg">🔍 <input type="search" id="q" aria-label="Search schemes" placeholder="Search 239 schemes, e.g. post matric, UPSC, hostel, girls, PhD, abroad" autocomplete="off"></div>
+      <div class="divider"></div>
+      <div class="city-seg">📍 Maharashtra</div>
+      <div class="divider"></div>
+      <button type="submit" class="btn btn-primary btn-sm">Search</button>
+    </form>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="results-head">
+    <h1 id="resTitle"></h1>
+    <p id="resSub"></p>
+  </div>
+
+  <details class="card filters" id="filters" open>
+    <summary>⚙️ Filters <span id="fCountMobile"></span></summary>
+    <div class="f-body">
+      <div class="f-grid">
+        <div class="f-field"><label for="fCat">Caste / category</label><select id="fCat"></select></div>
+        <div class="f-field"><label for="fInc">Family yearly income</label><select id="fInc"></select></div>
+        <div class="f-field"><label for="fLvl">Education level</label><select id="fLvl"></select></div>
+        <div class="f-field"><label for="fWant">I am looking for</label><select id="fWant"></select></div>
+        <div class="f-field"><label for="fBy">Run by</label><select id="fBy" title="Worked out from the scheme name, so it can be wrong for a few schemes"></select></div>
+      </div>
+      <div class="f-sit">
+        <div class="lbl">This also applies to me <span style="font-weight:500;color:var(--ink-soft)">(tap all that fit)</span></div>
+        <div class="row" id="sitRow" role="group" aria-label="Special situations"></div>
+        <div class="hint">Schemes only for girls, students with disability, wards of service families, workers' children or orphans appear after you tap the matching option.</div>
+      </div>
+      <div class="f-actions">
+        <span class="active-count" id="fActive"></span>
+        <button type="button" class="linkbtn" id="resetBtn">Reset all filters</button>
+      </div>
+    </div>
+  </details>
+
+  <div id="notes"></div>
+
+  <div class="stats-strip">
+    <div class="card mini-stat"><div class="icon-badge ib-blue">🎓</div><div><div class="n" id="stCount">239</div><div class="l">Schemes matching</div></div></div>
+    <div class="card mini-stat"><div class="icon-badge ib-green">🏛️</div><div><div class="n" id="stState">0</div><div class="l">Maharashtra Govt. schemes</div></div></div>
+    <div class="card mini-stat"><div class="icon-badge ib-amber">🌐</div><div><div class="n" id="stCentral">0</div><div class="l">Central / national schemes</div></div></div>
+  </div>
+
+  <div class="results-grid" id="resGrid"></div>
+  <div id="moreWrap" style="text-align:center;padding:0 0 30px"></div>
+  <p class="portal-note" data-tr-unit>Amounts, income limits, last dates and the application link differ for every scheme and change every year. Always confirm on the official notice. Many Maharashtra scholarships are applied for on the <a href="https://mahadbt.maharashtra.gov.in/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-weight:600">MahaDBT portal</a>. Applying is free; never pay an agent. Tags such as <b>Income limit likely</b> and <b>Run by</b> are worked out from each scheme's name, so treat them as a guide and confirm on the official notice. Religious or linguistic minority? See the full <a href="minority.html" style="color:var(--blue);font-weight:600">Minority Schemes</a> list.</p>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div><div class="brand">Sarthi - X</div><small>Your Document Friend in the Government Maze — Amravati Pilot</small></div>
+  </div>
+</footer>
+
+<script type="module" src="/src/schemes.js"></script>
+</body>
+</html>
